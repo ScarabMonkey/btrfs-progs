@@ -8690,6 +8690,26 @@ error:
 	return err;
 }
 
+/*
+ * Get real tree block level for case like shared block
+ * Return >= 0 as tree level
+ * Return <0 for error
+ */
+static int query_tree_block_level(struct btrfs_fs_info *fs_info, u64 bytenr)
+{
+	struct extent_buffer *eb;
+	u32 nodesize = btrfs_super_nodesize(fs_info->super_copy);
+	int ret = -EIO;
+
+	eb = read_tree_block_fs_info(fs_info, bytenr, nodesize, 0);
+	if (!extent_buffer_uptodate(eb))
+		goto out;
+	ret = btrfs_header_level(eb);
+out:
+	free_extent_buffer(eb);
+	return ret;
+}
+
 static int btrfs_fsck_reinit_root(struct btrfs_trans_handle *trans,
 			   struct btrfs_root *root, int overwrite)
 {
