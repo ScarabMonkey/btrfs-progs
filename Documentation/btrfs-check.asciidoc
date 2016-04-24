@@ -43,7 +43,8 @@ SAFE OR ADVISORY OPTIONS
 use the first valid set of backup roots stored in the superblock
 +
 This can be combined with '--super' if some of the superblocks are damaged.
-
+--low-memory::
+check fs in low memory usage mode(experimental)
 --check-data-csum::
 verify checksums of data blocks
 +
