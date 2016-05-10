@@ -35,6 +35,8 @@ run in read-only mode (default)
 create a new CRC tree and recalculate all checksums
 --init-extent-tree::
 create a new extent tree
+--low-memory::
+check fs in low memory usage mode(experimental)
 --check-data-csum::
 verify checksums of data blocks
 -p|--progress::
